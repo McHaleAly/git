@@ -53,7 +53,7 @@ app.get('/all-blogs', (req, res) => {
 });
 
 app.get('/single-blog', (req, res) => {
-  Blog.findById('5ea99b49b8531f40c0fde689')
+  Blog.findById('663f7ea47ad312da61b9fe44c')
     .then(result => {
       res.send(result);
     })
@@ -61,6 +61,7 @@ app.get('/single-blog', (req, res) => {
       console.log(err);
     });
 });
+
 
 app.get('/', (req, res) => {
   res.redirect('/blogs');
@@ -75,6 +76,7 @@ app.get('/blogs/create', (req, res) => {
   res.render('create', { title: 'Create a new blog' });
 });
 
+
 app.get('/blogs', (req, res) => {
   Blog.find().sort({ createdAt: -1 })
     .then(result => {
@@ -84,6 +86,7 @@ app.get('/blogs', (req, res) => {
       console.log(err);
     });
 });
+
 
 // 404 page
 app.use((req, res) => {
