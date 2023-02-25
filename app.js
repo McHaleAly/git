@@ -53,7 +53,7 @@ app.get('/blog/:id', (req, res) => {
    .then(result => {
       res.render('details',{ blog:result, title:'Blog Details'});
     })
-  .catch((err) => {
+  .catch(err => {
      console.log(err);
     });
  })
@@ -70,6 +70,17 @@ app.post('/blogs', (req, res) => {
   });
 });
 
+app.delete('/blogs/:id', (req, res) => { 
+  const id = req.params.id;
+
+  Blog.findByIdAndDelete()
+  .then(result => {
+    res.json({ redirect: '/blogs' });
+  })
+  .catch(err => {
+    console.log(err);
+  });
+});
 
 
 app.get('/blogs/create', (req, res) => {
@@ -78,5 +89,5 @@ app.get('/blogs/create', (req, res) => {
  
 // 404 page
 app.use((req, res) => {
-  res.status(404).render('404', { title: '404' });
+  res.status(404).render('404', { title: '404'});
 });
